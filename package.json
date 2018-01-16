@@ -1,0 +1,46 @@
+{
+  "name": "apijs",
+  "version": "0.1.0",
+  "main": "dist/umd/Api.js",
+  "scripts": {
+    "build:prod": "rollup -c ./script/rollup.config.js --environment NODE_ENV:production",
+    "build:dev": "rollup -c ./script/rollup.config.js --environment NODE_ENV:development",
+    "build": "npm run build:dev&&npm run build:prod",
+    "dev": "rollup --config ./script/rollup.config.js -w",
+    "lint": "tslint --project ./",
+    "docs:html": "typedoc src/index.ts --module umd --target es5 --mode modules --theme minimal --out docs --excludePrivate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qkorbit/Api.git"
+  },
+  "author": "qkorbit <qkorbit@live.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qkorbit/Api/issues"
+  },
+  "devDependencies": {
+    "rollup": "^0.53.3",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-filesize": "^1.5.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.9.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "typedoc": "^0.9.0",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {},
+  "keywords": [
+    "api",
+    "apijs",
+    "ajax",
+    "promise",
+    "xhr",
+    "typescript",
+    "ES6",
+    "ES7",
+    "library"
+  ]
+}
