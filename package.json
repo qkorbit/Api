@@ -1,12 +1,13 @@
 {
-  "name": "apijs",
+  "name": "api-mock-js",
   "version": "0.1.0",
-  "main": "dist/umd/Api.js",
+  "description": "Promise based AJAX library",
+  "main": "dist/Api.js",
   "scripts": {
     "build:prod": "rollup -c ./script/rollup.config.js --environment NODE_ENV:production",
     "build:dev": "rollup -c ./script/rollup.config.js --environment NODE_ENV:development",
     "build": "npm run build:dev&&npm run build:prod",
-    "dev": "rollup --config ./script/rollup.config.js -w",
+    "dev": "rollup -c ./script/rollup.config.js -w",
     "lint": "tslint --project ./",
     "docs:html": "typedoc src/index.ts --module umd --target es5 --mode modules --theme minimal --out docs --excludePrivate"
   },
@@ -14,11 +15,12 @@
     "type": "git",
     "url": "https://github.com/qkorbit/Api.git"
   },
-  "author": "qkorbit <qkorbit@live.com>",
+  "author": "qkorbit <qkorbit@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/qkorbit/Api/issues"
   },
+  "homepage": "https://github.com/qkorbit/Api#readme",
   "devDependencies": {
     "rollup": "^0.53.3",
     "rollup-plugin-commonjs": "^8.2.6",
