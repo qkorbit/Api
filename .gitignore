@@ -3,3 +3,4 @@ docs
 .rpt2_cache
 *.log
 .project
+coverage

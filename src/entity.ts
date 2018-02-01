@@ -1,6 +1,6 @@
-import { copyProp, Obj2QueryString } from './utils/transform'
+import { copyProp, Obj2QueryString, queryStringMark } from './utils/transform'
 import { log } from './utils/console'
-import jsonp from './jsonp'
+import createJsonp from './jsonp'
 import ajax from './ajax'
 import { REGEXP_URL } from './constant'
 import { IEntity } from './type'
@@ -33,7 +33,7 @@ export default class Entity implements IEntity {
     return this.url + this.search
   }
   get search() {
-    return '?' + Obj2QueryString(this.filter(this.input))
+    return queryStringMark(this.url) + Obj2QueryString(this.filter(this.input))
   }
   get url() {
     let { urlModel, domain, namespace } = this
@@ -48,7 +48,7 @@ export default class Entity implements IEntity {
     if (this.useMock) {
       return Promise.resolve(this.mock)
     } else if (this.dataType === 'jsonp') {
-      return jsonp(this)
+      return createJsonp(this)
     } else {
       return ajax(this)
     }

@@ -15,6 +15,17 @@ function bindEvents(xhr, eventList) {
   }
 }
 
+function parseResponse(res) {
+  if (typeof res === 'string' && res.length) {
+    try {
+      return JSON.parse(res)
+    } catch (e) {
+      return res
+    }
+  }
+  return null
+}
+
 function createAjax({
   url,
   search,
@@ -32,24 +43,20 @@ function createAjax({
     let data = dataType === 'json' ? search.slice(1) : obj2formData(input)
     xhr.withCredentials = withCredentials
     xhr.timeout = timeout
-    xhr.open(methods, url, async)
-    setHeaders(xhr, header)
-    xhr.send(data)
-    bindEvents(xhr, xhrEvent)
-
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          let rep = xhr.response
-          if (typeof rep !== 'object') {
-            rep = JSON.parse(rep)
-          }
-          resolve(rep)
+          resolve(parseResponse(xhr.response))
         } else {
           reject(xhr)
         }
       }
     }
+    xhr.open(methods, url, async)
+    setHeaders(xhr, header)
+    xhr.send(data)
+    bindEvents(xhr, xhrEvent)
+
   })
 }
 

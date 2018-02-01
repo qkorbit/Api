@@ -1,4 +1,5 @@
 import { error } from './utils/console'
+import { queryStringMark } from './utils/transform'
 const $head = document.getElementsByTagName('head')[0]
 
 function generateCallbackID() {
@@ -29,10 +30,8 @@ function injectScript(id, src) {
  * @param callbackId The jsonp callback ID
  * @returns a Promise which should include response
  */
-function createJsonp({ href, timeout, callbackName, callbackId }) {
-  let id = callbackId || generateCallbackID()
-  let mark = /\?/.test(href) ? '&' : '?'
-  let src = `${href}${mark}${callbackName}=${id}`
+export default function createJsonp({ href, timeout, callbackName, callbackId: id = generateCallbackID() }) {
+  let src = `${href}${queryStringMark(href)}${callbackName}=${id}`
 
   return new Promise((resolve, reject) => {
     let timeoutId = setTimeout(() => {
@@ -44,7 +43,7 @@ function createJsonp({ href, timeout, callbackName, callbackId }) {
 
     window[id] = res => {
       resolve(res)
-      if (timeoutId) clearTimeout(timeoutId)
+      clearTimeout(timeoutId)
       clearJsonp(id)
       removeScript(id)
     }
@@ -52,5 +51,3 @@ function createJsonp({ href, timeout, callbackName, callbackId }) {
     injectScript(id, src)
   })
 }
-
-export default createJsonp

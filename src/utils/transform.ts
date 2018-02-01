@@ -9,3 +9,5 @@ export function obj2formData(obj: GlobalObject): FormData {
 export const copyProp = (o: object, t: object): void => Object.keys(o).forEach(e => t[e] = o[e])
 
 export const Obj2QueryString = (o: GlobalObject): string => Object.keys(o).map(e => e + '=' + o[e]).join('&')
+
+export const queryStringMark = (url) => /\?/.test(url) ? '&' : '?'

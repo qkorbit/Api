@@ -64,6 +64,7 @@ function obj2formData(obj) {
 }
 var copyProp = function (o, t) { return Object.keys(o).forEach(function (e) { return t[e] = o[e]; }); };
 var Obj2QueryString = function (o) { return Object.keys(o).map(function (e) { return e + '=' + o[e]; }).join('&'); };
+var queryStringMark = function (url) { return /\?/.test(url) ? '&' : '?'; };
 
 var $head = document.getElementsByTagName('head')[0];
 function generateCallbackID() {
@@ -84,8 +85,7 @@ function injectScript(id, src) {
 function createJsonp(_a) {
     var href = _a.href, timeout = _a.timeout, callbackName = _a.callbackName, callbackId = _a.callbackId;
     var id = callbackId || generateCallbackID();
-    var mark = /\?/.test(href) ? '&' : '?';
-    var src = "" + href + mark + callbackName + "=" + id;
+    var src = "" + href + queryStringMark(href) + callbackName + "=" + id;
     return new Promise(function (resolve, reject) {
         var timeoutId = setTimeout(function () {
             error("JSONP request to " + src + " timed out");
@@ -181,7 +181,7 @@ var Entity = (function () {
     });
     Object.defineProperty(Entity.prototype, "search", {
         get: function () {
-            return '?' + Obj2QueryString(this.filter(this.input));
+            return queryStringMark(this.url) + Obj2QueryString(this.filter(this.input));
         },
         enumerable: true,
         configurable: true

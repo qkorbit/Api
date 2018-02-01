@@ -53,7 +53,7 @@ export interface EntityObject {
 
 export interface GlobalControl {
   define: (namespace: string, config: DefineMock) => void
-  config: (config: EntityOption) => void
-  require: (namespace: string, data: GlobalObject, config: EntityOption) => Promise<object>
+  config: (config?: EntityOption) => void
+  require: (namespace: string, data?: GlobalObject, config?: EntityOption) => Promise<object>
   get: (namespace: string) => Entity
 }
