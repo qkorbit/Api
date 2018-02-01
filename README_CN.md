@@ -1,5 +1,5 @@
 # ApiJS
-
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fqkorbit%2FApi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fqkorbit%2FApi?ref=badge_shield)
 > Api.js 是一款基于 promise 的 JavaScript（TypeScript）库，它对异步请求进行封装，提供常规的 ajax 请求和前端开发上的数据模拟
 
 [English](/README.md)
