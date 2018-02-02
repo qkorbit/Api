@@ -27,7 +27,7 @@ export default {
       format: 'umd',
       banner: '/** ApiJS - (c) Orbit 2018 - MIT Licensed */',
       name: 'Api',
-      sourcemap: false,
+      sourcemap: !isProd,
       file: './dist/api.' + (isProd ? 'min.' : '') + 'js'
     }
   ]

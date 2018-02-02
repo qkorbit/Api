@@ -31,13 +31,13 @@ var __assign = Object.assign || function __assign(t) {
     return t;
 };
 
-var hasConsole = typeof console !== 'undefined';
+var hasConsole = function () { return typeof console !== 'undefined'; };
 function warn() {
     var arg = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         arg[_i] = arguments[_i];
     }
-    if (hasConsole)
+    if (hasConsole())
         console.warn.apply(console, arg);
 }
 function log() {
@@ -45,7 +45,7 @@ function log() {
     for (var _i = 0; _i < arguments.length; _i++) {
         arg[_i] = arguments[_i];
     }
-    if (hasConsole)
+    if (hasConsole())
         console.log.apply(console, arg);
 }
 function error() {
@@ -53,7 +53,7 @@ function error() {
     for (var _i = 0; _i < arguments.length; _i++) {
         arg[_i] = arguments[_i];
     }
-    if (hasConsole)
+    if (hasConsole())
         console.error.apply(console, arg);
 }
 
@@ -83,8 +83,7 @@ function injectScript(id, src) {
     $head.appendChild(script);
 }
 function createJsonp(_a) {
-    var href = _a.href, timeout = _a.timeout, callbackName = _a.callbackName, callbackId = _a.callbackId;
-    var id = callbackId || generateCallbackID();
+    var href = _a.href, timeout = _a.timeout, callbackName = _a.callbackName, _b = _a.callbackId, id = _b === void 0 ? generateCallbackID() : _b;
     var src = "" + href + queryStringMark(href) + callbackName + "=" + id;
     return new Promise(function (resolve, reject) {
         var timeoutId = setTimeout(function () {
@@ -95,8 +94,7 @@ function createJsonp(_a) {
         }, timeout);
         window[id] = function (res) {
             resolve(res);
-            if (timeoutId)
-                clearTimeout(timeoutId);
+            clearTimeout(timeoutId);
             clearJsonp(id);
             removeScript(id);
         };
@@ -117,6 +115,17 @@ function bindEvents(xhr, eventList) {
         xhr.upload.addEventListener('progress', eventList.uploadProgress);
     }
 }
+function parseResponse(res) {
+    if (typeof res === 'string' && res.length) {
+        try {
+            return JSON.parse(res);
+        }
+        catch (e) {
+            return res;
+        }
+    }
+    return null;
+}
 function createAjax(_a) {
     var url = _a.url, search = _a.search, input = _a.input, dataType = _a.dataType, methods = _a.methods, async = _a.async, withCredentials = _a.withCredentials, header = _a.header, timeout = _a.timeout, xhrEvent = _a.xhrEvent;
     var xhr = new XMLHttpRequest();
@@ -124,24 +133,20 @@ function createAjax(_a) {
         var data = dataType === 'json' ? search.slice(1) : obj2formData(input);
         xhr.withCredentials = withCredentials;
         xhr.timeout = timeout;
-        xhr.open(methods, url, async);
-        setHeaders(xhr, header);
-        xhr.send(data);
-        bindEvents(xhr, xhrEvent);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    var rep = xhr.response;
-                    if (typeof rep !== 'object') {
-                        rep = JSON.parse(rep);
-                    }
-                    resolve(rep);
+                    resolve(parseResponse(xhr.response));
                 }
                 else {
                     reject(xhr);
                 }
             }
         };
+        xhr.open(methods, url, async);
+        setHeaders(xhr, header);
+        xhr.send(data);
+        bindEvents(xhr, xhrEvent);
     });
 }
 
@@ -245,3 +250,4 @@ var Api = {
 return Api;
 
 })));
+//# sourceMappingURL=api.js.map
