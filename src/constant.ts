@@ -12,7 +12,7 @@ export const DEFAULT_OPTIONS: EntityOption = {
   input: {},
   mock: {},
   callbackName: 'callback',
-  callbackId: null,
+  callbackId: undefined,
   withCredentials: false,
   urlModel: 0,
   debug: false,

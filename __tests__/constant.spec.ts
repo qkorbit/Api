@@ -1,6 +1,6 @@
 import { REGEXP_URL, DEFAULT_OPTIONS } from '../src/constant'
 
-describe('REGEXP_URL', () => {
+describe('test REGEXP_URL', () => {
   it('should return true', () => {
     expect(REGEXP_URL.test('http://localhost')).toBe(true)
     expect(REGEXP_URL.test('http://127.0.0.1')).toBe(true)
@@ -9,7 +9,7 @@ describe('REGEXP_URL', () => {
   })
 })
 
-describe('DEFAULT_OPTIONS', () => {
+describe('test DEFAULT_OPTIONS', () => {
   it('should be objcet', () => {
     expect(Object.prototype.toString.call(DEFAULT_OPTIONS) === '[object Object]').toBe(true)
   })

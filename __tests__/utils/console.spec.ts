@@ -24,7 +24,7 @@ describe('console', () => {
     spy.mockClear()
     console.error = _error
   })
-  it('does not throw when console is not available', () => {
+  it('not throw', () => {
     const _console = global.console
     Object.defineProperty(global, 'console', { value: undefined })
     try {

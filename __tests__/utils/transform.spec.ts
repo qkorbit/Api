@@ -1,6 +1,6 @@
 import { obj2formData, copyProp, Obj2QueryString, queryStringMark } from '../../src/utils/transform'
 
-describe('obj2formData', () => {
+describe('test obj2formData', () => {
   it('test obj2formData', () => {
     let fd = obj2formData({
       name: 'qkorbit',
@@ -12,7 +12,7 @@ describe('obj2formData', () => {
   })
 })
 
-describe('copyProp', () => {
+describe('test copyProp', () => {
   it('test copyProp', () => {
     let A = {
       a: true
@@ -25,7 +25,7 @@ describe('copyProp', () => {
   })
 })
 
-describe('Obj2QueryString', () => {
+describe('test Obj2QueryString', () => {
   it('test Obj2QueryString', () => {
     let obj = {
       name: 'qkorbit',
@@ -39,7 +39,7 @@ describe('Obj2QueryString', () => {
   })
 })
 
-describe('queryStringMark', () => {
+describe('test queryStringMark', () => {
   it('should return suitable mark', () => {
     expect(queryStringMark('https://github.com?id=123')).toBe('&')
     expect(queryStringMark('https://github.com')).toBe('?')

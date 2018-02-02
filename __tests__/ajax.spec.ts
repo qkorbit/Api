@@ -1,7 +1,7 @@
 import createAjax from '../src/ajax'
 const sinon = require('sinon')
 jest.setTimeout(3000)
-describe('createAjax', () => {
+describe('test createAjax', () => {
   let entity
   let data = { foo: 'bar' }
   let dataJson = JSON.stringify(data)

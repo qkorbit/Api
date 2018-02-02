@@ -160,7 +160,7 @@ var DEFAULT_OPTIONS = {
     input: {},
     mock: {},
     callbackName: 'callback',
-    callbackId: 0,
+    callbackId: undefined,
     withCredentials: false,
     urlModel: 0,
     debug: false,
