@@ -26,11 +26,22 @@ $ yarn add api-mock-js
 
 or with npm
 
-```bash 
+```bash
 $ npm install api-mock-js --save
 ```
 
 ### 使用
+
+#### 0. 引入依赖
+
+```javascript
+import Api from 'api-mock-js'
+```
+#### 1. 发起普通请求
+
+```javascript
+Api.require('http://api.foo.com/get/')
+```
 
 ```javascript
 import Api from 'api-mock-js'

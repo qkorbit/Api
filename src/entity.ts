@@ -33,7 +33,8 @@ export default class Entity implements IEntity {
     return this.url + this.search
   }
   get search() {
-    return queryStringMark(this.url) + Obj2QueryString(this.filter(this.input))
+    let qs = Obj2QueryString(this.filter(this.input))
+    return qs ? (queryStringMark(this.url) + qs) : ''
   }
   get url() {
     let { urlModel, domain, namespace } = this

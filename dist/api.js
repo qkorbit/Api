@@ -186,7 +186,8 @@ var Entity = (function () {
     });
     Object.defineProperty(Entity.prototype, "search", {
         get: function () {
-            return queryStringMark(this.url) + Obj2QueryString(this.filter(this.input));
+            var qs = Obj2QueryString(this.filter(this.input));
+            return qs ? (queryStringMark(this.url) + qs) : '';
         },
         enumerable: true,
         configurable: true

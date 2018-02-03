@@ -1,6 +1,6 @@
 {
   "name": "api-mock-js",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "Promise based AJAX library",
   "main": "dist/Api.js",
   "scripts": {
