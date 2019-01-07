@@ -1,5 +1,6 @@
 module.exports = {
   moduleFileExtensions: ['ts', 'js', 'json'],
+  "testEnvironment": "node",
   testMatch: [
     '<rootDir>/__tests__/**/*spec.ts'
   ],
