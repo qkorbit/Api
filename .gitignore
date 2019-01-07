@@ -4,3 +4,4 @@ docs
 *.log
 .project
 coverage
+example
