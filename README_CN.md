@@ -43,6 +43,8 @@ import Api from 'api-mock-js'
 Api.require('http://api.foo.com/get/')
 ```
 
+#### 2. 发起普通请求
+
 ```javascript
 import Api from 'api-mock-js'
 

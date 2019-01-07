@@ -30,6 +30,7 @@ function createAjax({
   url,
   search,
   input,
+  href,
   dataType,
   methods,
   async,
@@ -52,6 +53,7 @@ function createAjax({
         }
       }
     }
+    if (methods === 'GET' || methods === 'DELETE' ) url = href
     xhr.open(methods, url, async)
     setHeaders(xhr, header)
     xhr.send(data)
