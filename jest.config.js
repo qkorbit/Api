@@ -1,6 +1,8 @@
 module.exports = {
   moduleFileExtensions: ['ts', 'js', 'json'],
-  "testEnvironment": "node",
+  testEnvironment: "jsdom",
+  testURL: 'http://localhost/',
+  verbose: true,
   testMatch: [
     '<rootDir>/__tests__/**/*spec.ts'
   ],
