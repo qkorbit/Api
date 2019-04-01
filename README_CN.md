@@ -101,6 +101,10 @@ Api.require('/user', {
 
 ApiJS 依赖于原生 `ES6 Promise`，要在不支持该语法的浏览器中使用，可以引入 [polyfill](https://github.com/jakearchibald/es6-promise)
 
+## Tip
+
+请大家使用 v0.2.x 及以上版本
+
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fqkorbit%2FApi.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fqkorbit%2FApi)
